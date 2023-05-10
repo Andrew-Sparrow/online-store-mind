@@ -1,6 +1,8 @@
 const sequelize = require('../db');
 const { DataTypes } = require('sequelize');
 
+// TODO Добавить талбицу с заказанными товарами
+
 const Basket = sequelize.define(
   'basket', {
   id: {
@@ -8,7 +10,7 @@ const Basket = sequelize.define(
     primaryKey: true,
     autoIncrement: true,
   }
-})
+})ж
 
 const BasketProduct = sequelize.define(
   'basket_product', {
