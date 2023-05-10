@@ -3,6 +3,7 @@ const path = require('path');
 const { Product } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
+
 class productController {
   async create(req, res, next) {
     try {
@@ -19,12 +20,12 @@ class productController {
   };
 
   async getAll(req, res) {
-    let { brandId, typeId, limit, page } = req.query;
+    let { limit, page } = req.query;
     page = page || 1;
     limit = limit || 10;
     let offset = page * limit - limit;
 
-    let products = await Product.findAndCountAll({ where: { typeId, brandId }, limit, offset });
+    let products = await Product.findAndCountAll({ limit, offset });
 
     return res.json(products);
   };
