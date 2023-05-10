@@ -1,66 +1,65 @@
-const uuid = require('uuid')
+const uuid = require('uuid');
 const path = require('path');
-const { Product } = require('../models/models')
+const { Product } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 class productController {
   async create(req, res, next) {
     try {
-      let { title, price } = req.body
-      const { img } = req.files
-      let fileName = uuid.v4() + ".jpg"
-      img.mv(path.resolve(__dirname, '..', 'static', fileName))
+      let { title, price } = req.body;
+      const { img } = req.files;
+      let fileName = uuid.v4() + ".jpg";
+      img.mv(path.resolve(__dirname, '..', 'static', fileName));
       const device = await Product.create({ title, price, img: fileName });
 
       if (info) {
-        info = JSON.parse(info)
+        info = JSON.parse(info);
         info.forEach(i =>
           DeviceInfo.create({
             title: i.title,
             description: i.description,
             deviceId: device.id
           })
-        )
+        );
       }
 
-      return res.json(device)
+      return res.json(device);
     } catch (e) {
-      next(ApiError.badRequest(e.message))
+      next(ApiError.badRequest(e.message));
     }
-
-  }
+  };
 
   async getAll(req, res) {
-    let { brandId, typeId, limit, page } = req.query
-    page = page || 1
-    limit = limit || 9
-    let offset = page * limit - limit
+    let { brandId, typeId, limit, page } = req.query;
+    page = page || 1;
+    limit = limit || 9;
+    let offset = page * limit - limit;
     let devices;
     if (!brandId && !typeId) {
-      devices = await Product.findAndCountAll({ limit, offset })
+      devices = await Product.findAndCountAll({ limit, offset });
     }
     if (brandId && !typeId) {
-      devices = await Product.findAndCountAll({ where: { brandId }, limit, offset })
+      devices = await Product.findAndCountAll({ where: { brandId }, limit, offset });
     }
     if (!brandId && typeId) {
-      devices = await Product.findAndCountAll({ where: { typeId }, limit, offset })
+      devices = await Product.findAndCountAll({ where: { typeId }, limit, offset });
     }
     if (brandId && typeId) {
-      devices = await Product.findAndCountAll({ where: { typeId, brandId }, limit, offset })
+      devices = await Product.findAndCountAll({ where: { typeId, brandId }, limit, offset });
     }
-    return res.json(devices)
-  }
+    return res.json(devices);
+  };
 
   async getOne(req, res) {
-    const { id } = req.params
+    const { id } = req.params;
     const device = await Product.findOne(
       {
         where: { id },
         include: [{ model: DeviceInfo, as: 'info' }]
       },
     )
-    return res.json(device)
+    return res.json(device);
   }
-}
+};
 
-module.exports = new productController()
+module.exports = new productController();
