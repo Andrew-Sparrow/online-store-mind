@@ -10,7 +10,7 @@ const AppRouter = () => {
     <Routes>
       {
         publicRoutes.map(({ path, Component }) =>
-          <Route key={path} path={path} component={Component} exact />
+          <Route key={path} path={path} element={<Component/>} exact />
         )
       }
       <Route path="*" element={<NoMatch />} />

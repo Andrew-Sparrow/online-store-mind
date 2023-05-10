@@ -1,9 +1,10 @@
 import { CREATE_ROUTE, BASKET_ROUTE, PRODUCTS_ROUTE, PRODUCT_ROUTE, SHOP_ROUTE } from "./utils/consts";
 import Basket from "./pages/Basket";
 
-import Shop from "./pages/Products";
-import CreateProduct from "./pages/CreateProduct";
 import Product from "./pages/Product";
+import Products from "./pages/Products";
+import CreateProduct from "./pages/CreateProduct";
+import Shop from "./pages/Shop";
 
 
 export const publicRoutes = [
@@ -22,5 +23,9 @@ export const publicRoutes = [
   {
     path: PRODUCT_ROUTE,
     Component: Product
+  },
+  {
+    path: PRODUCTS_ROUTE,
+    Component: Products
   },
 ];

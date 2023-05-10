@@ -46,11 +46,11 @@
 
 import React from 'react';
 
-const Shop = () => {
+const Products = () => {
   return (
-    <div>Shop</div>
+    <div>Products</div>
   )
 }
 
-export default Shop;
+export default Products;
 

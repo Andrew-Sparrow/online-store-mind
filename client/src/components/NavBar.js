@@ -3,14 +3,16 @@ import { Context } from "../index";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink, redirect } from "react-router-dom";
-import { BASKET_ROUTE, CREATE_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { BASKET_ROUTE, CREATE_ROUTE, PRODUCTS_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { Button } from "react-bootstrap";
 import { observer } from "mobx-react-lite";
 import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
 
 
 const NavBar = observer(() => {
   const { product } = useContext(Context);
+  const navigate = useNavigate();
 
   return (
     <Navbar bg="dark" >
@@ -19,13 +21,16 @@ const NavBar = observer(() => {
         <Nav className="ml-auto" style={{ color: 'white' }}>
           <Button
             variant={"outline-light"}
-            onClick={() => redirect(CREATE_ROUTE)}
+            onClick={() => navigate(CREATE_ROUTE)}
           >
             Создать товар
           </Button>
         </Nav>
         <Nav className="ml-auto" style={{ color: 'white' }}>
-          <Button variant={"outline-light"} onClick={() => redirect(BASKET_ROUTE)}>Корзина</Button>
+          <Button variant={"outline-light"} onClick={() => navigate(PRODUCTS_ROUTE)}>Список продуктов</Button>
+        </Nav>
+        <Nav className="ml-auto" style={{ color: 'white' }}>
+          <Button variant={"outline-light"} onClick={() => navigate(BASKET_ROUTE)}>Корзина</Button>
         </Nav>
       </Container>
     </Navbar>

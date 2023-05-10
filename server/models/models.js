@@ -10,7 +10,7 @@ const Basket = sequelize.define(
     primaryKey: true,
     autoIncrement: true,
   }
-})ж
+});
 
 const BasketProduct = sequelize.define(
   'basket_product', {
