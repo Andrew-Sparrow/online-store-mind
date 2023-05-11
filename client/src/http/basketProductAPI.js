@@ -11,12 +11,8 @@ export const createBasketProduct = async (productId) => {
   return data;
 };
 
-export const fetchBasketProduct = async (productId) => {
-  const { data } = await $host.get('api/basket-product', {
-    params: {
-      productId
-    }
-  });
+export const fetchBasketProduct = async () => {
+  const { data } = await $host.get('api/basket-product');
 
   return data;
 };

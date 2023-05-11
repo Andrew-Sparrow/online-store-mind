@@ -4,7 +4,6 @@ const ApiError = require('../error/ApiError');
 
 class basketProductController {
   async create(req, res) {
-
     try {
       const basketProduct = await BasketProduct.create(
         { basketId: 1, productId }
@@ -18,14 +17,9 @@ class basketProductController {
   }
 
   async getAll(req, res) {
-    let { limit, page } = req.query;
-    page = page || 1;
-    limit = limit || 10;
-    let offset = page * limit - limit;
-
     try {
-      const basketProduct = await Basket.findAndCountAll(
-        { where: { basketId: 1 }, limit, offset }
+      const basketProduct = await BasketProduct.findAndCountAll(
+        { where: { basketId: 1 } }
       );
       return res.json(basketProduct);
 
