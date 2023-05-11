@@ -4,7 +4,7 @@ import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 import { observer } from "mobx-react-lite";
 import Container from 'react-bootstrap/Container';
-
+import './App.css';
 
 const App = observer(() => {
 
