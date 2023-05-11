@@ -14,7 +14,7 @@ const NavBar = observer(() => {
   const navigate = useNavigate();
 
   return (
-    <Navbar bg="dark" >
+    <Navbar bg="dark" className='flex-wrap' >
       <Container>
         <NavLink style={{ color: 'white' }} to={SHOP_ROUTE}>OnlineShop</NavLink>
         <Nav className="ml-auto" style={{ color: 'white' }}>
