@@ -22,7 +22,7 @@ const CreateProduct = observer(({ show, onHide }) => {
     formData.append('price', `${ price }`);
     formData.append('img', file);
 
-    createProduct(formData).then(() => console.log('Product created !'));
+    createProduct(formData).then(() => onHide());
   }
 
   return (
