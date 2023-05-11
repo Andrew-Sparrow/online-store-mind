@@ -60,7 +60,14 @@ const CreateProduct = observer(({ show, onHide }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-        <Button variant="outline-success" onClick={addProduct}>Добавить новый продукт</Button>
+        <Button
+          variant="outline-success"
+          onClick={() => {
+            addProduct();
+            setTitle('');
+            setPrice('');
+            setFile(null);
+          }}>Добавить новый продукт</Button>
       </Modal.Footer>
     </Modal>
   );
