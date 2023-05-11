@@ -1,8 +1,8 @@
 import { $host } from "./index";
 
 
-export const createBasketProduct = async (productId) => {
-  const { data } = await $host.post('api/basket-product', productId);
+export const createBasketProduct = async (product) => {
+  const { data } = await $host.post('api/basket-product', product);
 
   return data;
 };

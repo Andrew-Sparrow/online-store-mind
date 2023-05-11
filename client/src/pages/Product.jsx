@@ -14,7 +14,7 @@ const Product = () => {
   const { id } = useParams();
 
   const addToBasket = () => {
-    createBasketProduct({ productId: id })
+    createBasketProduct({ name: id })
       .then((data) => {
         console.log('Product was added to basket!')
       })
