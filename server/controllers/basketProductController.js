@@ -18,9 +18,14 @@ class basketProductController {
   }
 
   async getAll(req, res) {
+    let { limit, page } = req.query;
+    page = page || 1;
+    limit = limit || 10;
+    let offset = page * limit - limit;
+
     try {
       const basketProduct = await Basket.findAndCountAll(
-        { where: { basketId, productId } }
+        { where: { basketId: 1 }, limit, offset }
       );
       return res.json(basketProduct);
 
