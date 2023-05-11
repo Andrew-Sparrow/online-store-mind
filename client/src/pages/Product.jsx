@@ -14,10 +14,15 @@ const Product = () => {
   const { id } = useParams();
 
   const addToBasket = () => {
-    createBasketProduct({ name: id })
-      .then((data) => {
-        console.log('Product was added to basket!')
-      })
+    try {
+      createBasketProduct({ name: id })
+        .then((data) => {
+          console.log('Product was added to basket!')
+        })
+
+    } catch (error) {
+      console.error(error.message());
+    }
   };
 
   useEffect(() => {
