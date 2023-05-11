@@ -3,7 +3,7 @@ import Basket from "./pages/Basket";
 
 import Product from "./pages/Product";
 import Products from "./pages/Products";
-import CreateProduct from "./pages/CreateProduct";
+import CreateProduct from "./components/modals/CreateProduct";
 import Shop from "./pages/Shop";
 
 
