@@ -35,13 +35,8 @@ const Products = observer(() => {
 
   return (
     <Row className="mt-2">
-      {productsStore.products.length === 0
-        ?
-        <b>Список товаров пуст</b>
-        :
-        productsStore.products.map(item =>
-        <ProductItem key={item.id} product={item} />
-      )}
+      <b>Количество товаров - {productsStore.totalCount}</b>
+      {productsStore.products.map(item =><ProductItem key={item.id} product={item} />)}
       <Pages />
     </Row>
   )
