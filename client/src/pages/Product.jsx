@@ -14,10 +14,18 @@ const Product = () => {
 
   const { id } = useParams();
 
+  // const addToBasket = () => {
+  //   createType({ name: value })
+  //     .then(data => {
+  //       setValue('')
+  //       onHide()
+  //     })
+  // }
+
   useEffect(() => {
     fetchOneProduct(id)
       .then(data => setProduct(data))
-    .finally(() => { setLoading(false) })
+      .finally(() => { setLoading(false) })
   }, []);
 
   if (loading) {
@@ -38,7 +46,7 @@ const Product = () => {
             style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
           >
             <h3>От: {product.price} руб.</h3>
-            <Button variant={"outline-dark"}>Добавить в корзину</Button>
+            <Button variant={"outline-dark"} onClick={() => console.log('basket')}>Добавить в корзину</Button>
           </Card>
         </Col>
       </Row>

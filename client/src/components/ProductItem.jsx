@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
   const navigate = useNavigate();
 
   return (
-    <Col md={3} className={"mt-3"} onClick={() => navigate(PRODUCT_ROUTE + '/' + product.id)}>
+    <Col className={"mt-3"} onClick={() => navigate(PRODUCT_ROUTE + '/' + product.id)}>
         <Card style={{ width: 150, cursor: 'pointer' }} border={"light"}>
           <Image width={150} height={150} src={process.env.REACT_APP_API_URL + product.img} />
           <b>{product.title}</b>

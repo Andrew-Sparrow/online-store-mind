@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const path = require('path');
-const { Product, Basket } = require('../models/models');
+const { Product } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 
@@ -13,11 +13,6 @@ class productController {
       img.mv(path.resolve(__dirname, '..', 'static', fileName));
       const product = await Product.create({ title, price, img: fileName });
 
-      let basket;
-
-      if (!basket) {
-        basket = await Basket.create();
-      }
       return res.json(product);
 
     } catch (e) {

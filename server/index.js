@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const sequelize = require('./db');
-const models = require('./models/models');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const router = require('./routes/index');
 const errorHandler = require('./middleware/ErrorHandlingMiddleware');
-const path = require('path')
+const path = require('path');
+const { Basket } = require('./models/models');
 
 
 const PORT = process.env.PORT || 5030;
@@ -26,6 +26,12 @@ const start = async () => {
     await sequelize.authenticate();
     await sequelize.sync();
     app.listen(process.env.PORT, () => console.log(`Server started ${ PORT }!`));
+
+    let basket; // создаем корзину, если еще не существует
+
+    if (!basket) {
+      basket = await Basket.create();
+    }
   } catch (error) {
     console.log(error.message);
   }
