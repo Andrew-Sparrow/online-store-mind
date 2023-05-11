@@ -15,7 +15,23 @@ const Product = () => {
 
 
   return (
-    <div>Product Page - {id}</div>
+    <Container className="mt-3">
+      <Row >
+        <Col className="d-flex flex-column align-items-center justify-content-around">
+          <Image width={300} height={300} src={process.env.REACT_APP_API_URL + product.img} />
+          <h2 className='d-flex' style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{product.title}</h2>
+        </Col>
+        <Col className="d-flex flex-column align-items-center justify-content-between">
+          <Card
+            className="d-flex flex-column align-items-center justify-content-around"
+            style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
+          >
+            <h3>От: {product.price} руб.</h3>
+            <Button variant={"outline-dark"}>Добавить в корзину</Button>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   )
 };
 
