@@ -5,6 +5,8 @@ const ApiError = require('../error/ApiError');
 class basketProductController {
   async create(req, res) {
     try {
+      let { productId } = req.body;
+
       const basketProduct = await BasketProduct.create(
         { basketId: 1, productId }
       );
