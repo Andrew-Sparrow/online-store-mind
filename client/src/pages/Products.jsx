@@ -28,14 +28,18 @@ const Products = observer(() => {
     }).finally(() => setLoading(false));
   }, [productsStore.page]);
 
-  
+
   if (loading) {
     return <Loader />
   }
 
   return (
     <Row className="mt-2">
-      {productsStore.products.map(item =>
+      {productsStore.products.length === 0
+        ?
+        <b>Список товаров пуст</b>
+        :
+        productsStore.products.map(item =>
         <ProductItem key={item.id} product={item} />
       )}
       <Pages />
