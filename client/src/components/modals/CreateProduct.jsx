@@ -1,15 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button, Form, Row, Col } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, Form, } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
-import { Context } from "../../index";
-import { createProduct, fetchProducts } from "../../http/productAPI";
+import { createProduct } from "../../http/productAPI";
 import { observer } from "mobx-react-lite";
 
 
 const CreateProduct = observer(({ show, onHide }) => {
-  const { productsStore } = useContext(Context);
-
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
