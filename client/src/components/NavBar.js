@@ -17,7 +17,7 @@ const NavBar = observer(() => {
     <Navbar bg="dark" className='flex-wrap' >
       <Container>
         <NavLink style={{ color: 'white' }} to={SHOP_ROUTE}>OnlineShop</NavLink>
-        <Nav className="ml-auto" style={{ color: 'white' }}>
+        <Nav className="ml-auto mb-2" style={{ color: 'white' }}>
           <Button
             variant={"outline-light"}
             onClick={() => navigate(CREATE_ROUTE)}
@@ -25,10 +25,10 @@ const NavBar = observer(() => {
             Создать товар
           </Button>
         </Nav>
-        <Nav className="ml-auto" style={{ color: 'white' }}>
+        <Nav className="ml-auto mb-2" style={{ color: 'white' }}>
           <Button variant={"outline-light"} onClick={() => navigate(PRODUCTS_ROUTE)}>Список продуктов</Button>
         </Nav>
-        <Nav className="ml-auto" style={{ color: 'white' }}>
+        <Nav className="ml-auto  mb-2" style={{ color: 'white' }}>
           <Button variant={"outline-light"} onClick={() => navigate(BASKET_ROUTE)}>Корзина</Button>
         </Nav>
       </Container>
