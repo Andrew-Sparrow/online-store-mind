@@ -5,8 +5,7 @@ import { Row } from "react-bootstrap";
 
 import ProductItem from '../components/ProductItem';
 import { fetchProducts } from '../http/productAPI';
-import { Spinner } from "react-bootstrap";
-
+import Loader from '../components/Loader';
 import Pages from '../components/Pages';
 
 
@@ -27,14 +26,11 @@ const Products = observer(() => {
       productsStore.setProducts(data.rows);
       productsStore.setTotalCount(data.count);
     }).finally(() => setLoading(false));
-  }, [productsStore.products, productsStore.page]);
+  }, [productsStore.page]);
 
+  
   if (loading) {
-    return <div className='mt-5'>
-      <div style={{ width: 32 }} className='d-flex justify-content-between m-auto'>
-        <Spinner animation="border" variant="primary" />
-      </div>
-    </div>
+    return <Loader />
   }
 
   return (

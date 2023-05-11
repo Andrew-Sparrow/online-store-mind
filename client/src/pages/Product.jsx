@@ -2,16 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 
 import { useParams } from 'react-router-dom';
+
+import Loader from '../components/Loader';
+
 import { fetchOneProduct } from "../http/productAPI";
 
 
 const Product = () => {
   const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
+
   const { id } = useParams();
 
   useEffect(() => {
-    fetchOneProduct(id).then(data => setProduct(data))
-  }, [])
+    fetchOneProduct(id)
+      .then(data => setProduct(data))
+    .finally(() => { setLoading(false) })
+  }, []);
+
+  if (loading) {
+    return <Loader />
+  }
 
 
   return (
