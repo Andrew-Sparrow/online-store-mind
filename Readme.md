@@ -8,7 +8,7 @@
 ---
 
 ### Description:
-Project for booking apartments in six cities.
+Project for learning Node.js.
 
 ### Technologies:
 
