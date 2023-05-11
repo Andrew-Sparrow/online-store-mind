@@ -11,13 +11,12 @@ import { useNavigate } from "react-router-dom";
 
 
 const NavBar = observer(() => {
-  const { product } = useContext(Context);
   const navigate = useNavigate();
 
   return (
     <Navbar bg="dark" >
       <Container>
-        <NavLink style={{ color: 'white' }} to={SHOP_ROUTE}>КупиПродукт</NavLink>
+        <NavLink style={{ color: 'white' }} to={SHOP_ROUTE}>OnlineShop</NavLink>
         <Nav className="ml-auto" style={{ color: 'white' }}>
           <Button
             variant={"outline-light"}

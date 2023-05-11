@@ -11,39 +11,28 @@ class productController {
       const { img } = req.files;
       let fileName = uuid.v4() + ".jpg";
       img.mv(path.resolve(__dirname, '..', 'static', fileName));
-      const device = await Product.create({ title, price, img: fileName });
+      const product = await Product.create({ title, price, img: fileName });
 
       let basket;
 
       if (!basket) {
         basket = await Basket.create();
       }
-      return res.json(device);
+      return res.json(product);
 
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   };
 
-  async getAll(req, res) {
-    let { limit, page } = req.query;
-    page = page || 1;
-    limit = limit || 10;
-    let offset = page * limit - limit;
-
-    let products = await Product.findAndCountAll({ limit, offset });
-
-    return res.json(products);
-  };
-
   async getOne(req, res) {
     const { id } = req.params;
-    const device = await Product.findOne(
+    const product = await Product.findOne(
       {
         where: { id }
       },
     )
-    return res.json(device);
+    return res.json(product);
   }
 };
 

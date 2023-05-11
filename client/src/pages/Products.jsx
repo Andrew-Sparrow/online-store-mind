@@ -1,56 +1,41 @@
-// import React, { useContext, useEffect } from 'react';
-// import { Container } from "react-bootstrap";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
-
-// import DeviceList from "../components/DeviceList";
-// import { observer } from "mobx-react-lite";
-// import { Context } from "../index";
-// import { fetchBrands, fetchDevices, fetchTypes } from "../http/deviceAPI";
-// import Pages from "../components/Pages";
-
-// const Shop = observer(() => {
-//   const { device } = useContext(Context)
-
-//   useEffect(() => {
-//     fetchTypes().then(data => device.setTypes(data))
-//     fetchBrands().then(data => device.setBrands(data))
-//     fetchDevices(null, null, 1, 2).then(data => {
-//       device.setDevices(data.rows)
-//       device.setTotalCount(data.count)
-//     })
-//   }, [])
-
-//   useEffect(() => {
-//     fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 2).then(data => {
-//       device.setDevices(data.rows)
-//       device.setTotalCount(data.count)
-//     })
-//   }, [device.page, device.selectedType, device.selectedBrand,])
-
-//   return (
-//     <Container>
-//       <Row className="mt-2">
-//         <Col md={9}>
-//           <BrandBar />
-//           <DeviceList />
-//           <Pages />
-//         </Col>
-//       </Row>
-//     </Container>
-//   );
-// });
-
-// export default Shop;
+import React, { useContext, useEffect } from 'react';
+import { observer } from "mobx-react-lite";
+import { Context } from "../index";
+import { Row } from "react-bootstrap";
+import ProductItem from '../components/ProductItem';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { fetchProducts } from '../http/productAPI';
 
 
-import React from 'react';
+const Products = observer(() => {
+  const { productsStore } = useContext(Context);
+  console.log(productsStore);
 
-const Products = () => {
+  useEffect(() => {
+
+    fetchProducts(1, 3).then(data => {
+      productsStore.setProducts(data.rows);
+      productsStore.setTotalCount(data.count);
+    })
+  }, [])
+
+  useEffect(() => {
+    fetchProducts(productsStore.page, 3).then(data => {
+      productsStore.setProducts(data.rows);
+      productsStore.setTotalCount(data.count);
+    })
+  }, [productsStore.page])
+
   return (
-    <div>Products</div>
+    <Row className="d-flex">
+      <ListGroup className="list-group-flush">
+        {productsStore.products.map(item =>
+          <ProductItem key={item.id} product={item} />
+        )}
+      </ListGroup>
+    </Row>
   )
-}
+});
 
 export default Products;
 
