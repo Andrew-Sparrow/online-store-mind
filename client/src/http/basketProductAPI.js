@@ -2,11 +2,7 @@ import { $host } from "./index";
 
 
 export const createBasketProduct = async (productId) => {
-  const { data } = await $host.post('api/basket-product', {
-    params: {
-      productId
-    }
-  });
+  const { data } = await $host.post('api/basket-product', productId);
 
   return data;
 };

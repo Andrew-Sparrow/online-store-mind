@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
-
 import { useParams } from 'react-router-dom';
 
 import Loader from '../components/Loader';
-
 import { fetchOneProduct } from "../http/productAPI";
+import { createBasketProduct } from '../http/basketProductAPI';
 
 
 const Product = () => {
@@ -14,12 +13,12 @@ const Product = () => {
 
   const { id } = useParams();
 
-  // const addToBasket = () => {
-  //   createBasketProduct({ name: value })
-  //     .then(data => {
-  //       setValue('')
-  //     })
-  // };
+  const addToBasket = () => {
+    createBasketProduct({ productId: id })
+      .then((data) => {
+        console.log('Product was added to basket!')
+      })
+  };
 
   useEffect(() => {
     fetchOneProduct(id)
@@ -45,7 +44,7 @@ const Product = () => {
             style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
           >
             <h3>От: {product.price} руб.</h3>
-            <Button variant={"outline-dark"} onClick={() => console.log('basket')}>Добавить в корзину</Button>
+            <Button variant={"outline-dark"} onClick={() => addToBasket()}>Добавить в корзину</Button>
           </Card>
         </Col>
       </Row>
