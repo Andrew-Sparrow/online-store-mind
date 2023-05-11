@@ -15,12 +15,11 @@ const Product = () => {
   const { id } = useParams();
 
   // const addToBasket = () => {
-  //   createType({ name: value })
+  //   createBasketProduct({ name: value })
   //     .then(data => {
   //       setValue('')
-  //       onHide()
   //     })
-  // }
+  // };
 
   useEffect(() => {
     fetchOneProduct(id)
