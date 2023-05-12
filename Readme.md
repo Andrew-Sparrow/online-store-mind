@@ -3,8 +3,6 @@
 
 ## Training project
 
-
-
 ---
 
 ### Description:
