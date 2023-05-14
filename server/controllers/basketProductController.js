@@ -1,4 +1,6 @@
-const { BasketProduct } = require('../models/models');
+const { Sequelize } = require('sequelize');
+
+const { Product, BasketProduct, Basket } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 
@@ -18,17 +20,20 @@ class basketProductController {
     }
   }
 
-  async getAll(req, res) {
+  async getAll(req, res, next) {
     try {
-      const basketProduct = await BasketProduct.findAndCountAll(
-        { where: { basketId: 1 } }
-      );
+      const basketProduct = await Basket.findAndCountAll({
+        include: Product,
+        order: [['id']]
+      });
+
       return res.json(basketProduct);
 
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
-};
+}
+
 
 module.exports = new basketProductController();

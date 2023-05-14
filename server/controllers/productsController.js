@@ -12,6 +12,13 @@ class productsController {
 
     return res.json(products);
   };
+
+  async getProductsInBasket(req, res) {
+
+    let productsInBasket = await Product.findAndCountAll({ where: {basketId: 1} });
+
+    return res.json(productsInBasket);
+  };
 };
 
 module.exports = new productsController();

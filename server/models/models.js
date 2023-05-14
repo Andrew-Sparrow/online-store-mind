@@ -42,11 +42,14 @@ const Product = sequelize.define(
   }
 });
 
-Basket.hasMany(BasketProduct);
-BasketProduct.belongsTo(Basket);
+// Basket.hasMany(BasketProduct);
+// BasketProduct.belongsTo(Basket);
 
-Product.hasMany(BasketProduct)
-BasketProduct.belongsTo(Product)
+// Product.hasMany(BasketProduct);
+// BasketProduct.belongsTo(Product);
+
+Basket.belongsToMany(Product, { through: 'basket_product' });
+Product.belongsToMany(Basket, { through: 'basket_product' });
 
 module.exports = {
   Basket,

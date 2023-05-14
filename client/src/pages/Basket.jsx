@@ -14,7 +14,8 @@ const Basket = observer(() => {
 
   useEffect(() => {
     fetchBasketProduct(1, 3).then(data => {
-      basketProductStore.setBasketProducts(data.rows);
+      console.log(data);
+      basketProductStore.setBasketProducts(data.rows[0].products);
       basketProductStore.setTotalCount(data.count);
     }).finally(() => setLoading(false));
 

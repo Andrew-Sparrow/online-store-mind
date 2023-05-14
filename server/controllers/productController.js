@@ -29,18 +29,6 @@ class productController {
     )
     return res.json(product);
   }
-
-  async getProductsInBasket(req, res) {
-    const { basketId } = req.params;
-    const product = await Products.findAndCountAll(
-      {
-        where: { basketId }
-      },
-    )
-    return res.json(product);
-  }
-
-
 };
 
 module.exports = new productController();

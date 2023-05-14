@@ -1,15 +1,12 @@
 const { Basket } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
-let basket; // создаем корзину, если она еще не существует
 
 
 class basketController {
   async create(req, res, next) {
     try {
-      if (!basket) {
-        basket = await Basket.create();
-      }
+      let basket = await Basket.findOrCreate({ where: { id: 1 } });
 
       return res.json(basket);
     } catch (e) {
